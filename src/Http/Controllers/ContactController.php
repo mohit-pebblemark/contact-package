@@ -1,6 +1,5 @@
 <?php
 namespace Pebblemark\Contact\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Pebblemark\Contact\Models\Contact;
 use Illuminate\Http\Request;
