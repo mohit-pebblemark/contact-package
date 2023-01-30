@@ -17,9 +17,8 @@ class ContactController extends Controller
 
     public function contactSubmit(Request $request)
     {
-        //dd($request->all());
         Mail::to(config('contact.send_email_to'))->send(new ContactMailable($request->name ,$request->contact_no, $request->message));
         Contact::create($request->all());
-        dd('contact added.');
+        return view('contact::thanku');
     }
 }
