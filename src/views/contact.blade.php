@@ -64,6 +64,14 @@ input[type=submit]:hover {
 	border-radius: 5px;
 	padding: 20px;
 }
+
+.error-msg {
+	border-radius: 5px;
+	padding: 20px;
+	background-color: #b11313;
+	color: white;
+	margin-bottom: 25px;
+}
 </style>
 </head>
 <body>
@@ -73,13 +81,22 @@ input[type=submit]:hover {
 		</h1>
 	</center>
 	<div class="container">
+		@if ($errors->any())
+		<div class="error-msg">
+			<h4>Error Occurred! Please fix the following errors:</h4>
+			<ul>
+				@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li> @endforeach
+			</ul>
+		</div>
+		@endif
 		<form action="{{route('contactSubmit')}}" method='post'>
 			@csrf <label for="fname">Name</label> <input type="text" id="name"
 				name="name" placeholder="Your name.."> <label for="email">Email</label>
 			<input type="email" id="email" name="email"
 				placeholder="Your email.."> <label for="contact">Contact No.</label>
 			<input type="number" id="contact_no" name="contact_no"
-				placeholder="Your contact number.." > <label for="message">Message</label>
+				placeholder="Your contact number.."> <label for="message">Message</label>
 			<textarea id="subject" name="message" placeholder="Write something.."
 				style="height: 200px"></textarea>
 			<input type="submit" value="Submit">
